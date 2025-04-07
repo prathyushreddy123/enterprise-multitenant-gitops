@@ -1,0 +1,30 @@
+replicaCount: 3
+
+image:
+  repository: gcr.io/google-samples/microservices-demo/frontend ##Google registry where the image is stored
+  tag: v0.8.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  hosts:
+    - host: frontend.dev.example.com
+      paths:
+        - path: /
+          pathtype: Prefix
+  
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

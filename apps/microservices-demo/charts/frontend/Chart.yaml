@@ -1,0 +1,7 @@
+apiVersion: v2
+name: frontend
+description: Helm chart for the frontend apiVersion
+type: application
+version: 1.0.0
+appVersion: v0.8.0 ## Can be any value but preferable to have the same as container image tag
+
