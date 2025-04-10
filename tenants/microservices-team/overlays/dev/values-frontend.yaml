@@ -1,0 +1,26 @@
+replicaCount: 2
+
+image:
+  repository: gcr.io/google-samples/microservices-demo/frontend
+  tag: v0.8.0
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  hosts:
+    - host: frontend.dev.mydomain.com
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
