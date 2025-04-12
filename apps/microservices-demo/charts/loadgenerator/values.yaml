@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: gcr.io/google-samples/microservices-demo/loadgenerator
+  tag: v0.8.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

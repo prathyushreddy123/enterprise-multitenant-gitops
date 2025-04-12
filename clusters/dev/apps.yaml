@@ -1,3 +1,24 @@
+# App 1: Common infra (via Kustomize)
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: common-infra-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prathyushreddy123/enterprise-multitenant-gitops
+    targetRevision: HEAD
+    path: common/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

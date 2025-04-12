@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: checkoutservice-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prathyushreddy123/enterprise-multitenant-gitops
+    targetRevision: HEAD
+    path: apps/microservices-demo/charts/checkoutservice
+    helm:
+      valueFiles:
+        - tenants/microservices-team/overlays/dev/values-checkoutservice.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservices-team-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: currencyservice-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prathyushreddy123/enterprise-multitenant-gitops
+    targetRevision: HEAD
+    path: apps/microservices-demo/charts/currencyservice
+    helm:
+      valueFiles:
+        - tenants/microservices-team/overlays/dev/values-currencyservice.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservices-team-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

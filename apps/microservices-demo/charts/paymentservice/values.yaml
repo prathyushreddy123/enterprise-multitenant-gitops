@@ -1,9 +1,9 @@
 replicaCount: 1
-
 image:
-  repository: gcr.io/google-samples/microservices-demo/adservice
+  repository: gcr.io/google-samples/microservices-demo/paymentservice
   tag: v0.8.0
-
+service:
+  port: 50051
 resources:
   requests:
     cpu: 100m

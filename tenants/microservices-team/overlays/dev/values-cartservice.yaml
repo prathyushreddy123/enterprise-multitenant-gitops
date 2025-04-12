@@ -1,8 +1,11 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/google-samples/microservices-demo/adservice
+  repository: gcr.io/google-samples/microservices-demo/cartservice
   tag: v0.8.0
+
+service:
+  port: 7070
 
 resources:
   requests:
