@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: common
+  name: common-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: common-rolebinding
+  namespace: common
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: common
+roleRef:
+  kind: Role
+  name: common-role
+  apiGroup: rbac.authorization.k8s.io
