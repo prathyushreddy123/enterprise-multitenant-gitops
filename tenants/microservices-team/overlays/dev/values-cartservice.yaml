@@ -1,16 +1,10 @@
-replicaCount: 1
-
-image:
-  repository: gcr.io/google-samples/microservices-demo/cartservice
-  tag: v0.8.0
-
-service:
-  port: 7070
-
-resources:
-  requests:
-    cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 128Mi
+cartService:
+  create: true
+  name: cartservice
+  resources:
+    requests:
+      cpu: 200m
+      memory: 64Mi
+    limits:
+      cpu: 300m
+      memory: 128Mi

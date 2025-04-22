@@ -1,13 +1,10 @@
-replicaCount: 1
-image:
-  repository: gcr.io/google-samples/microservices-demo/recommendationservice
-  tag: v0.8.0
-service:
-  port: 8080
-resources:
-  requests:
-    cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 128Mi
+recommendationService:
+  create: true
+  name: recommendationservice
+  resources:
+    requests:
+      cpu: 100m
+      memory: 220Mi
+    limits:
+      cpu: 200m
+      memory: 450Mi

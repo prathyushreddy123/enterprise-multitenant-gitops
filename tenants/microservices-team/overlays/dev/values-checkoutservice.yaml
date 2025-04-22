@@ -1,13 +1,10 @@
-replicaCount: 1
-image:
-  repository: gcr.io/google-samples/microservices-demo/checkoutservice
-  tag: v0.8.0
-service:
-  port: 5050
-resources:
-  requests:
-    cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 128Mi
+checkoutService:
+  create: true
+  name: checkoutservice
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi

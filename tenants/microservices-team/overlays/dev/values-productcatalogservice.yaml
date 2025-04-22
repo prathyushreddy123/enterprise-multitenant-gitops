@@ -1,13 +1,12 @@
-replicaCount: 1
-image:
-  repository: gcr.io/google-samples/microservices-demo/productcatalogservice
-  tag: v0.8.0
-service:
-  port: 3550
-resources:
-  requests:
-    cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 128Mi
+productCatalogService:
+  create: true
+  name: productcatalogservice
+  # Specifies an extra latency to any request on productcatalogservice, by default no extra latency.
+  extraLatency: ""
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi

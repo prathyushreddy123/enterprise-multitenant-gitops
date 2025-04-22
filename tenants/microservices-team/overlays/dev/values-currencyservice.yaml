@@ -1,16 +1,10 @@
-replicaCount: 1
-
-image:
-  repository: gcr.io/google-samples/microservices-demo/currencyservice
-  tag: v0.8.0
-
-service:
-  port: 7000
-
-resources:
-  requests:
-    cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 128Mi
+currencyService:
+  create: true
+  name: currencyservice
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
