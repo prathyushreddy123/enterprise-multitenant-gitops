@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/prathyushreddy123/enterprise-multitenant-gitops
     targetRevision: HEAD
-    path: apps/microservices-demo/charts/adservice
+    path: apps/microservices-demo/charts
     helm:
       valueFiles:
         - tenants/microservices-team/overlays/dev/values-adservice.yaml
