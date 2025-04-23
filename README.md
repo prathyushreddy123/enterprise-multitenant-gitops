@@ -6,13 +6,47 @@ Welcome to the `enterprise-multitenant-gitops` repository — a **production-gra
 
 ## 🌟 Why This Project?
 
-As a DevOps/SRE/Cloud Engineer with 10+ years of experience, this repo is built as part of a hands-on learning journey to:
+This repo is built as part of a hands-on learning journey to:
 
-- Understand GitOps principles in a scalable, enterprise-grade setup
-- Implement ArgoCD with multi-tenant support
-- Master Helm chart reuse across microservices
-- Automate ArgoCD Applications using ApplicationSet
-- Prepare for real-world DevOps interviews and enterprise use cases
+Understand GitOps principles in a scalable, enterprise-grade setup
+
+Implement ArgoCD with multi-tenant support
+
+Master Helm chart reuse across microservices
+
+Automate ArgoCD Applications using ApplicationSet
+
+Prepare for real-world DevOps interviews and enterprise use cases
+
+📦 Why Use the Microservices Demo?
+
+The Google microservices-demo is a real-world e-commerce app with 10+ services, making it a perfect candidate to simulate:
+
+Service-to-service communication
+
+Namespace isolation
+
+Continuous delivery of independent workloads
+
+This project started by creating a separate repo for the source code and CI/CD workflows to build Docker images. Once built, the images are:
+
+Pushed to a container registry (e.g., DockerHub or GCR)
+
+Then this GitOps repo consumes those images via Helm values (tagged versions)
+
+So, this repo is completely focused on infrastructure deployment via GitOps — it does not contain source code, only:
+
+Helm templates
+
+Environment-specific values
+
+ArgoCD Application definitions
+
+ApplicationSet logic
+
+Shared platform components (RBAC, NetworkPolicy, etc.)
+
+By separating source code from deployment infrastructure, this setup mirrors real-world enterprise DevOps practices (GitOps + CI separation).
 
 ---
 
