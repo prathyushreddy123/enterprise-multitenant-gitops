@@ -35,21 +35,31 @@ enterprise-multitenant-gitops/
 ├── apps/                                # Helm chart templates for all microservices
 │   └── microservices-demo/
 │       └── charts/                      # Shared templates (deployment, service, ingress, etc.)
+│           ├── templates/
+│           └── values.yaml              # Default values (disabled by default)
+│
 ├── tenants/
 │   └── microservices-team/
-│       └── overlays/
-│           └── dev/                    # Microservice-specific Helm values for dev
-│               ├── values-frontend.yaml
-│               ├── values-adservice.yaml
-│               └── ...
+│       ├── overlays/
+│       │   └── dev/                     # Microservice-specific Helm values for dev
+│       │       ├── values-frontend.yaml
+│       │       ├── values-adservice.yaml
+│       │       └── ...
+│       │
+│       └── helm-release-dev/           # ArgoCD app definitions (one-time) + ApplicationSet
+│           └── applicationset.yaml     # ApplicationSet to dynamically generate apps per microservice
+│
 ├── clusters/
 │   └── dev/
-│       ├── apps.yaml                   # Optional: App of Apps (can deploy AppSet)
-│       └── applicationset.yaml         # Main ApplicationSet definition
+│       └── apps.yaml                   # App of Apps — deploys common infra & ApplicationSet
+│
 ├── common/                             # Kustomize overlays for shared infra
-│   └── overlays/dev/                   # Namespace, RBAC, NetworkPolicy, etc.
-├── secrets/                            # Encrypted SealedSecrets
-└── tools/argocd/                       # ArgoCD bootstrap configurations
+│   └── overlays/dev/                   # Namespace, RBAC, Istio, NetworkPolicy, etc.
+│
+├── secrets/                            # Encrypted SealedSecrets or SOPS-based secrets
+│
+└── tools/argocd/                       # ArgoCD bootstrap configurations (projects, access, etc.)
+
 ```
 
 ---
@@ -101,7 +111,7 @@ Each service:
 
 ```bash
 # 1. Deploy the ApplicationSet
-kubectl apply -f clusters/dev/applicationset.yaml -n argocd
+kubectl apply -f tenants/microservices-team/helm-release-dev/applicationset.yaml -n argocd
 
 # 2. (Optional) Bootstrap using apps.yaml
 kubectl apply -f clusters/dev/apps.yaml -n argocd
@@ -112,23 +122,9 @@ kubectl get applications -n argocd
 
 ---
 
-## 📖 Learning Blog Ideas (Upcoming)
-
-You can convert this project into a series of blogs or LinkedIn articles:
-
-1. ✅ **"How I Built a Scalable GitOps Platform from Scratch with ArgoCD"**
-2. 📦 **"Single Helm Chart, Multiple Microservices — DRY DevOps Patterns"**
-3. 🔁 **"How to Scale ArgoCD Deployments Using ApplicationSet"**
-4. 🔐 **"Managing Kubernetes Secrets Securely with SealedSecrets"**
-5. 🎯 **"Multi-Tenant Kubernetes: GitOps Structure Best Practices"**
-
-Let me know if you'd like help drafting any of these 📚
-
----
-
 ## 💬 About the Author
 
-Hi! I'm **Prathyush**, a DevOps & Cloud Engineer passionate about building production-grade platforms with automation and scalability in mind. This project is part of my deep dive into enterprise GitOps, designed both for **personal learning** and to **demonstrate my capabilities** to future employers 🚀
+Hi! I'm **Prathyush**, a DevOps & Cloud Engineer passionate about building production-grade platforms with automation and scalability in mind. This project is part of my deep dive into enterprise GitOps, designed both for **personal learning**.
 
 ---
 
